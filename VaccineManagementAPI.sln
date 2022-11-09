@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaccineManagementAPI", "VaccineManagementAPI\VaccineManagementAPI.csproj", "{A02A7334-B40A-4E03-8D8F-C1F4AB907BBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaccineManagementMVC", "VaccineManagementMVC\VaccineManagementMVC.csproj", "{F5F73422-0578-448E-A665-CAEC914904C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A02A7334-B40A-4E03-8D8F-C1F4AB907BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A02A7334-B40A-4E03-8D8F-C1F4AB907BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A02A7334-B40A-4E03-8D8F-C1F4AB907BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F73422-0578-448E-A665-CAEC914904C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F73422-0578-448E-A665-CAEC914904C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F73422-0578-448E-A665-CAEC914904C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F73422-0578-448E-A665-CAEC914904C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

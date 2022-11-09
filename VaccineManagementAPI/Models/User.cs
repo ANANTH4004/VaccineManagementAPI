@@ -17,6 +17,6 @@ namespace VaccineManagementAPI.Models
         [RegularExpression("^([0-9]{10})$", ErrorMessage = "Invalid Mobile Number.")]
         public string PhoneNo { get; set; }
         public string AadhaarNo { get; set; }
-     // public virtual  ICollection<Slot> Slots { get; set; }
+      public virtual  ICollection<Slot> Slots { get; set; }
     }
 }

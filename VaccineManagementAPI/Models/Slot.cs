@@ -17,8 +17,8 @@ namespace VaccineManagementAPI.Models
         public DateTime DateTime { get; set; }
        
         public  int? UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+       // [ForeignKey("UserId")]
+       // public virtual User User { get; set; }
         public  int CenterId { get; set; }
         [ForeignKey("CenterId")]
         public virtual Center Center { get; set; }
