@@ -19,20 +19,57 @@ namespace VaccineManagementMVC.Controllers
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
-        // GET: User
-        public ActionResult Index()
+        public ActionResult Login()
         {
-            List<User> users = new List<User>();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(FormCollection collection)
+        {
+            List<User> l = new List<User>();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user").Result;
             if (response.IsSuccessStatusCode)
             {
-                string data = response.Content.ReadAsStringAsync().Result;
-                users = JsonConvert.DeserializeObject<List<User>>(data);
+                String Data = response.Content.ReadAsStringAsync().Result;
+                l = JsonConvert.DeserializeObject<List<User>>(Data);
             }
-            var found = users.Find(x => x.Name == "anand");
-            var ans = found.Slots;
-            return View(ans);
-         
+            string username = Request["email"].ToString();
+            string password = Request["password"].ToString();
+            var found = l.Find(x => x.PhoneNo == username);
+            if (found != null)
+            {
+                if (found.Password == password)
+                {
+                    TempData["UserId"] = found.UserId;
+                    return RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    ViewBag.Msg = "Incorrect password";
+                }
+            }
+            else
+            {
+                ViewBag.Msg = "User not Found";
+            }
+            return View();
+        }
+        // GET: User
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+        public ActionResult Index()
+        {
+            int id = Convert.ToInt32(TempData["UserId"]);
+            User user = new User();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/"+id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                user = JsonConvert.DeserializeObject<User>(data);
+            }
+            return View(user.Slots);
         }
         public ActionResult AddMember()
         {
@@ -48,6 +85,16 @@ namespace VaccineManagementMVC.Controllers
             {
                 return RedirectToAction("Index");
             }
+            return View();
+        }
+        public ActionResult VaccinationDetails()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult VaccinationDetails(FormCollection collection)
+        {
+
             return View();
         }
     }

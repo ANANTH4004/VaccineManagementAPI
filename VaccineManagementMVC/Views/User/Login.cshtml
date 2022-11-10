@@ -6,14 +6,6 @@
 <!DOCTYPE html>
 
 <html>
-@*<head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Login</title>
-    </head>
-    <body>
-        <div>
-        </div>
-    </body>*@
 <head>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -49,53 +41,36 @@
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://tse1.mm.bing.net/th?id=OIP.Qa1oUG68Z1nO-1Z-R3NEIgHaEK&pid=Api&P=0"
+                    <img src="https://www.larepublica.net/storage/images/2021/05/27/20210527111611.vacuna-8.x2.jpg"
                          class="img-fluid"
                          alt="Sample image" />
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    @using (Html.BeginForm("Login", "Admin",
+                    @using (Html.BeginForm("Login", "User",
 new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                     {
                         @Html.AntiForgeryToken()
                         <h6 style="color:red" class="text-center">@ViewBag.msg</h6>
-                        @*<div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start" style="font-weight:bold">
-                            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                           
-                        </div>*@
-
-                        @*<div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Or</p>
-                        </div>*@
-
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3">Email Id</label>
+                            <label class="form-label" for="form3Example3">PhoneNo</label>
                             <input type="text"
                                    id="form3Example3" name="email"
                                    class="form-control form-control-lg"
-                                   placeholder="Enter a valid Email Id" required />
-
+                                   placeholder="Enter a valid PhoneNo"pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
                         </div>
-
                         <!-- Password input -->
                         <div class="form-outline mb-3">
                             <label class="form-label" for="form3Example4">Password</label>
                             <input type="password"
                                    id="form3Example4" name="password"
                                    class="form-control form-control-lg"
-                                   placeholder="Enter password" required/>
-
+                                   placeholder="Enter password" required />
                         </div>
-
-
                         <div class="d-flex justify-content-between align-items-center">
-                            <!-- Checkbox -->
-                           
                             <a href="#!" class="text-body">Forgot password?</a>
                         </div>
-
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit"
                                     class="btn btn-primary btn-lg"
@@ -111,7 +86,8 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                 </div>
             </div>
         </div>
-        
     </section>
 </body>
+
+
 </html>

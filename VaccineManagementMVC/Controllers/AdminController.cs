@@ -32,6 +32,7 @@ namespace VaccineManagementMVC.Controllers
             }
             return View(users);
         }
+       
         public ActionResult Create()
         {
             return View();
@@ -118,21 +119,19 @@ namespace VaccineManagementMVC.Controllers
             }
             return View();
         }
-        //[HttpPost]
-        //public ActionResult DeleteUser(int id)
-        //{
-        //   // string data = JsonConvert.SerializeObject(model);
-        //   // StringContent Content = new StringContent(data, Encoding.UTF8, "application/json");
-        //    HttpResponseMessage response = client.DeleteAsync(baseAddress + "/user/" + id).Result;
-        //    //var deleteTask = client.DeleteAsync("student/" + id.ToString());
-        //    //deleteTask.Wait();
+        public ActionResult Search(string searching)
+        {
+            List<User> users = new List<User>();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                users = JsonConvert.DeserializeObject<List<User>>(data);
+            }
 
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View();
-        //}
+            return View(users.Where(x => x.Name.Contains(searching) || searching == null).ToList());
+        }
+       
 
     }
 }

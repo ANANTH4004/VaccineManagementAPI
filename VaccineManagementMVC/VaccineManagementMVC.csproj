@@ -125,7 +125,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\sampleController.cs" />
+    <Compile Include="Controllers\SlotController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VaccinationStockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +181,20 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\Search.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\sample\Index.cshtml" />
+    <Content Include="Views\Slot\Create.cshtml" />
+    <Content Include="Views\Slot\Delete.cshtml" />
+    <Content Include="Views\Slot\Edit.cshtml" />
+    <Content Include="Views\Slot\Index.cshtml" />
+    <Content Include="Views\VaccinationStock\Create.cshtml" />
+    <Content Include="Views\VaccinationStock\Delete.cshtml" />
+    <Content Include="Views\VaccinationStock\Edit.cshtml" />
+    <Content Include="Views\Shared\_WelcomeLayoutPage.cshtml" />
+    <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Views\Shared\_DashboardLayout.cshtml" />
+    <Content Include="Views\User\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
