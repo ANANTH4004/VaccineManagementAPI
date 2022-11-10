@@ -18,6 +18,10 @@ namespace VaccineManagementMVC.Controllers
         //    client = new HttpClient();
         //    client.BaseAddress = baseAddress;
         }
+        //public ActionResult Register()
+        //{
+
+        //}
         public ActionResult Welcome()
         {
             return View();

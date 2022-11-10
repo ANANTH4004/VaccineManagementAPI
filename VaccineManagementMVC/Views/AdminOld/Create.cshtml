@@ -2,17 +2,17 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!--<-->@*h2>Create</h2>*@
+<h2>Create</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4 style="font-weight:bold;margin-left:300px;">Add User</h4>
+        <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -57,20 +57,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-    <div>
-
-        <p>
-            <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color:#11f413; color: white; ">@Html.ActionLink("Back", "Index") </button>
-
-        </p>
-    </div>
-
-
 }
 
-
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

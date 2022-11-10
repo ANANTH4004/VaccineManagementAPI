@@ -181,7 +181,6 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-    <Content Include="Views\Admin\Search.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\sample\Index.cshtml" />
     <Content Include="Views\Slot\Create.cshtml" />
@@ -195,6 +194,9 @@
     <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\Admin\Search.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
