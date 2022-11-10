@@ -9,6 +9,19 @@ namespace VaccineManagementAPI.Models
     {
         VaccineContext context = new VaccineContext();
 
+
+        public List<Member> GetMember()
+        {
+            return context.Members.ToList();
+        }
+        public void PostMember(Member admin)
+        {
+            context.Members.Add(admin);
+            context.SaveChanges();
+        }
+
+
+
         public List<Admin> GetAdmin()
         {
             return context.Admins.ToList();

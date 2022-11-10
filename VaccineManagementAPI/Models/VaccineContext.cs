@@ -18,5 +18,6 @@ namespace VaccineManagementAPI.Models
         public virtual DbSet<Slot> Slots { get; set; }
         public virtual DbSet<Vaccination> Vaccinations { get; set; }
         public virtual DbSet<VaccinationStock> VaccinationStocks { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
     }
 }

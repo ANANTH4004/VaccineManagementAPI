@@ -170,9 +170,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CenterController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\SlotController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VaccinationController.cs" />
     <Compile Include="Controllers\VaccinationStocksController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Center.cs" />
+    <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Operations.cs" />
     <Compile Include="Models\Slot.cs" />
     <Compile Include="Models\User.cs" />

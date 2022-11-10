@@ -1,0 +1,48 @@
+﻿@model IEnumerable<VaccineManagementAPI.Models.Slot>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Index</h2>
+
+@*@foreach (var item in Model)
+    {
+        <div class="center-block text-center">
+            <p>@item.UserId</p>
+            <p>@item.Vaccination.VaccineName</p>
+            <p>@item.Center.City</p>
+            <p>@item.DateTime</p>
+        </div>
+    }*@
+@foreach (var item in Model)
+{
+    <div class="container  col-md-6">
+        <div class="text-center" style="color:black ; background-color:lightcyan; border-radius:10px">
+            <div>
+                <span style="font-size:large;font-family:'Comic Sans MS'"> @Html.DisplayFor(modelItem => item.DoseNo)-By</span>
+                <p>
+                    <span style="font-size:medium;font-family:'Comic Sans MS'"> @Html.DisplayFor(modelItem => item.UserId)</span>
+                </p>
+            </div>
+
+
+            <h4>
+                <span style="font-size:small;font-family:Candara">@Html.DisplayFor(modelItem => item.Vaccination.VaccineName)</span>
+            </h4>
+            <h4>
+                <span style="font-size:medium ;font-family:'Comic Sans MS'"> @Html.DisplayFor(modelItem => item.DateTime)</span>
+
+            </h4>
+            @*<div style="background-color: lightblue; color: white; border-radius: 10px">
+                <h4>
+                    <a style="border-radius:10px" href="@Html.DisplayFor(modelItem => item.BlogUrl)">
+                        @item.BlogUrl
+                    </a>
+                </h4>
+            </div>*@
+        </div>
+    </div>
+}
+
+
