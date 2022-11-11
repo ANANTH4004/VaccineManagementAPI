@@ -19,7 +19,6 @@ namespace VaccineManagementMVC.Controllers
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
-        // GET: Admin
         public ActionResult Index()
         {
             List<Slot> s = new List<Slot>();

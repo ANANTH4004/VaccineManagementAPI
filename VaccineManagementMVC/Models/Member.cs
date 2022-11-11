@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace VaccineManagementAPI.Models
+namespace VaccineManagementMVC.Models
 {
     public class Member
     {
-        [Key]
-        public int MemberId { get; set; }
+        [Required]
         public string MemberName { get; set; }
+        [Required]
         public int Age { get; set; }
         [Required]
         public int UserId { get; set; }
+        [Required]
         public string AadhaarNo { get; set; }
-          public string PhoneNo { get; set; }
-        //[ForeignKey("UserId")]
-        //public virtual User User { get; set; }
-        public virtual ICollection<Slot> mslots { get; set; } 
+        [Required]
+        public string PhoneNo { get; set; }
 
     }
 }

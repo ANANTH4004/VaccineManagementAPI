@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div style="margin-left:400px;">
+    @using (Html.BeginForm("SearchBy", "User", FormMethod.Get))
+    {
+        @Html.TextBox("Searching")
+        <input type="submit" value="Search" />
+    }
+</div>
+

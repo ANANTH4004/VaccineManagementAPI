@@ -86,7 +86,7 @@ namespace VaccineManagementAPI.Models
         }
         public Slot GetSlot(int id)
         {
-            return context.Slots.ToList().Find(x => x.UserId == id);
+            return context.Slots.ToList().Find(x => x.SlotId == id);
         }
         public void PostSlot(Slot slot)
         {

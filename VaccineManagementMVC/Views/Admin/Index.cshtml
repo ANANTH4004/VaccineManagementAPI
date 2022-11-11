@@ -79,6 +79,15 @@
     <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color:#2dee07; color: white;margin-top:80px; ">@Html.ActionLink("Add Users", "Create") </button>
 
 </p>
+@*<div class="container top">
+    <div class="search-container">
+        <input type="text" name="search" placeholder="Search..." class="search-input">
+        <a href="@Url.Action("Search", "Admin" , new {Searchi}) "class="search-btn">
+            <i class="fas fa-search"></i>
+        </a>
+    </div>
+</div>*@
+
 <div style="margin-left:400px;">
     @using (Html.BeginForm("Search", "Admin", FormMethod.Get))
     {
@@ -123,7 +132,7 @@
                             <td style="background-color:#e8eff4">
                                 <p data-placement="top" data-toggle="tooltip" title="Edit">
                                     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>@Html.ActionLink("..", "Edit", new { id = Data.UserId })</button> <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
-                                        <span class="glyphicon glyphicon-trash"></span> @Html.ActionLink("..", "Delete", new { id = Data.UserId }  )
+                                        <span class="glyphicon glyphicon-trash"></span> @Html.ActionLink("..", "Delete", new { id = Data.UserId })
                                     </button>
                                 </p>
 

@@ -45,6 +45,7 @@ namespace VaccineManagementMVC.Controllers
                 if (found.Password == password)
                 {
                     TempData["UserId"] = found.UserId;
+                    TempData["PhoneNo"] = found.PhoneNo;
                     return RedirectToAction("Dashboard");
                 }
                 else
@@ -82,6 +83,8 @@ namespace VaccineManagementMVC.Controllers
         [HttpPost]
         public ActionResult AddMember(Member member)
         {
+            member.UserId = Convert.ToInt32(TempData["UserId"]);
+            member.PhoneNo = TempData["PhoneNo"].ToString();
             string data = JsonConvert.SerializeObject(member);
             StringContent content = new StringContent(data,Encoding.UTF8 , "application/json");
             HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/member" , content).Result;
@@ -100,6 +103,22 @@ namespace VaccineManagementMVC.Controllers
         {
 
             return View();
+        }
+        public ActionResult Search()
+        {
+            return View();
+        }
+        public ActionResult SearchBy(string city)
+        {
+            List<Slot> s = new List<Slot>();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/slot").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                s = JsonConvert.DeserializeObject<List<Slot>>(data);
+            }
+            var ans = s.Where(x => x.Center.City.Contains(city) || city == null).ToList();
+            return View(ans.Where(x=>x.Status == "Available"));
         }
     }
 }
