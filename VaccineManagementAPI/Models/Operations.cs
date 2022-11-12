@@ -62,6 +62,15 @@ namespace VaccineManagementAPI.Models
         {
             return context.Users.ToList().Find(x=>x.UserId==id);
         }
+        public User GetUser(string PhoneNo)
+        {
+            var found = context.Users.ToList().Find(x => x.PhoneNo == PhoneNo);
+            return found;
+            // context.Users.Remove(found);
+            //found.Password = user.Password;
+            // context.Users.Add(user);
+           // context.SaveChanges();
+        }
         public void PostUser(User user)
         {
             context.Users.Add(user);
@@ -80,6 +89,14 @@ namespace VaccineManagementAPI.Models
             found.Password = user.Password;
             found.Slots = user.Slots;
            // context.Users.Add(user);
+            context.SaveChanges();
+        }
+        public void PutUser(string PhoneNo , User user)
+        {
+            var found = context.Users.ToList().Find(x => x.PhoneNo == PhoneNo);
+            // context.Users.Remove(found);
+            found.Password = user.Password;
+            // context.Users.Add(user);
             context.SaveChanges();
         }
         public void DeleteUser(int id)

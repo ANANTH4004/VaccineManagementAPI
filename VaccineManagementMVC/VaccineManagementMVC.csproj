@@ -201,6 +201,7 @@
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\SearchBy.cshtml" />
     <Content Include="Views\User\MySlots.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

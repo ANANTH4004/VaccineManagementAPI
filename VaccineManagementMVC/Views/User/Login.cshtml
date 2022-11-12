@@ -32,16 +32,16 @@
       .h-custom {
         height: 100%;
       }*@
-    }
+    
     </style>
 </head>
-<marquee><h1>Please Enter Valid EmailId and Password</h1></marquee>
+<marquee><h1>Please Enter Valid PhoneNo and Password</h1></marquee>
 <body style="background: linear-gradient(120deg,#a01942,#8e44ad)">
     <section class="vh-100" style="background-color:white;">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://www.larepublica.net/storage/images/2021/05/27/20210527111611.vacuna-8.x2.jpg"
+                    <img src="https://img.freepik.com/premium-vector/big-family-portrait-with-three-generation-such-as-grandfather-grandmother-father-mother-children-different-age-together_1150-52751.jpg?w=2000"
                          class="img-fluid"
                          alt="Sample image" />
                 </div>
@@ -54,11 +54,11 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                         <h6 style="color:red" class="text-center">@ViewBag.msg</h6>
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3">PhoneNo</label>
+                            <label class="form-label" for="form3Example3">Phone No</label>
                             <input type="text"
                                    id="form3Example3" name="email"
                                    class="form-control form-control-lg"
-                                   placeholder="Enter a valid PhoneNo"pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
+                                   placeholder="Enter PhoneNo" pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-3">
@@ -69,7 +69,7 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                                    placeholder="Enter password" required />
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="#!" class="text-body">Forgot password?</a>
+                            <a href="#!" class="text-body">@Html.ActionLink("Forgot Password?", "ForgotPassword", "User")</a>
                         </div>
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit"
@@ -79,7 +79,7 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                             </button>
                             <p class="small fw-bold mt-2 pt-1 mb-0">
                                 Don't have an account?
-                                <a href="#!" class="link-danger">Register</a>
+                                <a href="#!" class="link-danger">@Html.ActionLink("Register" , "Register","User")</a>
                             </p>
                         </div>
                     }

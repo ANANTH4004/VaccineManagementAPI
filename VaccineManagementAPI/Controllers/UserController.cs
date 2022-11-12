@@ -34,7 +34,10 @@ namespace VaccineManagementAPI.Controllers
         {
             op.PutUser(id, value);
         }
-
+        public void Put(string PhoneNo, [FromBody] User value)
+        {
+            op.PutUser(PhoneNo, value);
+        }
         // DELETE api/<controller>/5
         public void Delete(int id)
         {

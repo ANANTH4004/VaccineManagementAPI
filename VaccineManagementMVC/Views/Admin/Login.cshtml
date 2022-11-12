@@ -40,7 +40,10 @@
       .h-custom {
         height: 100%;
       }*@
+    img{
+        border-radius: 5%;
     }
+
     </style>
 </head>
 <marquee><h1>Please Enter Valid EmailId and Password</h1></marquee>
@@ -48,10 +51,12 @@
     <section class="vh-100" style="background-color:white;">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
+
                 <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://tse1.mm.bing.net/th?id=OIP.Qa1oUG68Z1nO-1Z-R3NEIgHaEK&pid=Api&P=0"
-                         class="img-fluid"
-                         alt="Sample image" />
+                    <span class="rounded">
+                        <img src="https://www.avepoint.com/blog/wp-content/uploads/2021/10/system-administrator-software-developer-working-on-laptop-computer-in-vector-id1296795051.jpg"
+                             class="img-fluid" alt="Sample image" style="height:auto;width:auto" />
+                    </span>
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     @using (Html.BeginForm("Login", "Admin",
@@ -61,13 +66,13 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                         @Html.AntiForgeryToken()
                         <h6 style="color:red" class="text-center">@ViewBag.msg</h6>
                         @*<div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start" style="font-weight:bold">
-                            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                           
-                        </div>*@
+                                <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+
+                            </div>*@
 
                         @*<div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Or</p>
-                        </div>*@
+                                <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                            </div>*@
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
@@ -85,14 +90,14 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                             <input type="password"
                                    id="form3Example4" name="password"
                                    class="form-control form-control-lg"
-                                   placeholder="Enter password" required/>
+                                   placeholder="Enter password" required />
 
                         </div>
 
 
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Checkbox -->
-                           
+
                             <a href="#!" class="text-body">Forgot password?</a>
                         </div>
 
@@ -102,16 +107,16 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                                     style="padding-left: 2.5rem; padding-right: 2.5rem">
                                 Login
                             </button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">
-                                Don't have an account?
-                                <a href="#!" class="link-danger">Register</a>
-                            </p>
+                            @* <p class="small fw-bold mt-2 pt-1 mb-0">
+                                    Don't have an account?
+                                    <a href="#!" class="link-danger">Register</a>
+                                </p>*@
                         </div>
                     }
                 </div>
             </div>
         </div>
-        
+
     </section>
 </body>
 </html>

@@ -8,6 +8,10 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using VaccineManagementAPI.Models;
+//using VaccineManagementMVC.Models;
+//using Member = VaccineManagementAPI.Models.Member;
+//using Slot = VaccineManagementAPI.Models.Slot;
+//using User = VaccineManagementAPI.Models.User;
 
 namespace VaccineManagementMVC.Controllers
 {
@@ -21,10 +25,111 @@ namespace VaccineManagementMVC.Controllers
             client = new HttpClient();
             client.BaseAddress = baseAddress;
         }
+        /// <summary>
+        /// /// Register Page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Register()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Register(User u)
+        {
+            List<User> l = new List<User>();
+            HttpResponseMessage response1 = client.GetAsync(client.BaseAddress + "/user").Result;
+            if (response1.IsSuccessStatusCode)
+            {
+                String Data = response1.Content.ReadAsStringAsync().Result;
+                l = JsonConvert.DeserializeObject<List<User>>(Data);
+            }
+            u.UserId = l.Count + 1;
+            u.Name = Request["Name"].ToString();
+            u.PhoneNo = Request["PhoneNumber"].ToString();
+            var found = l.Find(x => x.PhoneNo == u.PhoneNo);
+            if (found != null)
+            {
+                TempData["msg"] = "User Already Register with this Mobile Number";
+                return RedirectToAction("Register");
+            }
+            else
+            {
+                u.Password = Request["Password"].ToString();
+                TempData["Cpassword"] = Request["ConformPassword"].ToString();
+                u.Age = Convert.ToInt32(Request["Age"]);
+              
+                u.AadhaarNo = Request["AadharNo"].ToString();
+                string data = JsonConvert.SerializeObject(u);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/user", content).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    if (u.Password == TempData["Cpassword"].ToString())
+                    {
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        TempData["msg"] = "Password and confirm  password not Matched Please check password and confirm password while Entering";
+                    }
+                }
+                return RedirectToAction("Register");
+            }
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(FormCollection collection)
+        {
+            List<User> l = new List<User>();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                String Data = response.Content.ReadAsStringAsync().Result;
+                l = JsonConvert.DeserializeObject<List<User>>(Data);
+            }
+            string name = Request["Name"].ToString();
+            string phoneNumber = Request["PhoneNumber"].ToString();
+            string password = Request["Password"].ToString();
+            string confirmpassword = Request["Cpassword"].ToString();
+            var found = l.Find(x => (x.PhoneNo == phoneNumber) && (x.Name==name));
+            if (found != null)
+            {
+                if ( password == confirmpassword)
+                {
+                    User user = new User();
+                    HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user/" + found.UserId).Result;
+                    if (response2.IsSuccessStatusCode)
+                    {
+                        String Data = response2.Content.ReadAsStringAsync().Result;
+                        user = JsonConvert.DeserializeObject<User>(Data);
+                    }
+                    user.Password = confirmpassword;
+                    string data = JsonConvert.SerializeObject(user);
+                    StringContent Content = new StringContent(data, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response3 = client.PutAsync(baseAddress + "/user?PhoneNo=" + user.PhoneNo, Content).Result;
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ViewBag.Msg = "Incorrect password";
+                }
+            }
+            else
+            {
+                ViewBag.Msg = "User not Found";
+            }
+            return View();
+
+        }
+        /// <summary>
+        /// Register End
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Login()
         {
             return View();
@@ -46,7 +151,7 @@ namespace VaccineManagementMVC.Controllers
             {
                 if (found.Password == password)
                 {
-                    TempData["UserId"] = found.UserId;
+                    TempData["userid"] = found.UserId;
                     TempData["PhoneNo"] = found.PhoneNo;
                    // loginUser = found;
                     return RedirectToAction("Dashboard");
@@ -69,7 +174,7 @@ namespace VaccineManagementMVC.Controllers
         }
         public ActionResult Index()
         {
-            int id = Convert.ToInt32(TempData["UserId"]);
+            int id = Convert.ToInt32(TempData["userid"]);
             User user = new User();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/"+id).Result;
             if (response.IsSuccessStatusCode)
@@ -86,7 +191,7 @@ namespace VaccineManagementMVC.Controllers
         [HttpPost]
         public ActionResult AddMember(Member member)
         {
-            member.UserId = Convert.ToInt32(TempData["UserId"]);
+            member.UserId = Convert.ToInt32(TempData["userid"]);
             member.PhoneNo = TempData["PhoneNo"].ToString();
             string data = JsonConvert.SerializeObject(member);
             StringContent content = new StringContent(data,Encoding.UTF8 , "application/json");
@@ -144,7 +249,7 @@ namespace VaccineManagementMVC.Controllers
                 String Data = response.Content.ReadAsStringAsync().Result;
                 s = JsonConvert.DeserializeObject<Slot>(Data);
             }
-            int userid =Convert.ToInt32(TempData["UserId"]);
+            int userid =Convert.ToInt32(TempData["userid"]);
             User user = new User();
             HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
             if (response2.IsSuccessStatusCode)
@@ -154,7 +259,7 @@ namespace VaccineManagementMVC.Controllers
             }
             if (user.Slots.Count == 0)
             {
-                s.UserId = Convert.ToInt32(TempData["UserId"]);
+                s.UserId = Convert.ToInt32(TempData["userid"]);
                 s.Status = "Booked";
                 //s.Count--;
                 string data = JsonConvert.SerializeObject(s);
@@ -178,7 +283,7 @@ namespace VaccineManagementMVC.Controllers
                 s = JsonConvert.DeserializeObject<Slot>(Data);
             }
             var userid = s.UserId;
-            TempData["UserId"] = s.UserId;
+            TempData["userid"] = s.UserId;
             s.UserId = null;
             s.Status = "Available";
             //int userid = Convert.ToInt32(TempData["UserId"]);
@@ -196,7 +301,7 @@ namespace VaccineManagementMVC.Controllers
             string data = JsonConvert.SerializeObject(user);
             StringContent Content = new StringContent(data, Encoding.UTF8, "application/json");
             HttpResponseMessage response3 = client.PutAsync(baseAddress + "/user/" + user.UserId, Content).Result;
-            return RedirectToAction("MySlots");
+            return RedirectToAction("Search");
         }
        
 
