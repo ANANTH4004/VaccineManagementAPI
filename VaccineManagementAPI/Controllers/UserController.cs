@@ -22,6 +22,10 @@ namespace VaccineManagementAPI.Controllers
         {
             return op.GetUser(id);
         }
+        public User Get(string PhoneNo)
+        {
+            return op.GetUser(PhoneNo);
+        }
 
         // POST api/<controller>
         public void Post([FromBody] User value)

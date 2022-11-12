@@ -1,39 +1,52 @@
-﻿@model IEnumerable<VaccineManagementAPI.Models.Admin>
+﻿@*@{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
 
+    <h2>Index</h2>*@
+
+<!--@model IEnumerable<VaccineManagementAPI.Models.User>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home Page";
 }
 
-<h2>Index</h2>
+<div class="jumbotron">
+    <h1>CREATE PDF in ASP.Net MVC</h1>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AdminEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdminPassword)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-8">
+        <div id="PrintPDF">
+            <h1>This section is going to be printed in PDF</h1>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdminEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdminPassword)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+
+        @using (Html.BeginForm("Export", "Home", FormMethod.Post))
+        {
+            <input type="hidden" name="ExportData" />
+            <input type="submit" id="btnSubmit" value="Export" />
+        }
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#btnSubmit").click(function () {
+                    $("input[name='ExportData']").val($("#PrintPDF").html());
+                });
+            });
+        </script>
+    </div>
+
+</div>-->
+@{Html.BeginForm("CreatePDFDocument", "Home", FormMethod.Get);
+    {
+    <div>
+        @Html.TextBox("PhoneNo")
+        <input type="submit" value="PhoneNo" />
+    </div>
+        @*<div>
+            <input type="submit" value="Generate PDF Document" style="width:150px;height:27px" />
+        </div>*@
+    }
+    Html.EndForm();
 }
-
-</table>
