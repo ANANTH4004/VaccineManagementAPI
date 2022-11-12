@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VaccineManagementAPI.Models.Slot>
+﻿@model VaccineManagementAPI.Models.User
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout1.cshtml";
@@ -17,7 +17,7 @@
     }*@
 @if (Model != null)
 {
-    foreach (var item in Model)
+    foreach (var item in Model.Slots)
     {
         <div class="container  col-md-6">
             <div class="text-center" style="color:black ; background-color:lightcyan; border-radius:10px">

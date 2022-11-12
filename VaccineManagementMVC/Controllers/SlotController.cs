@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using VaccineManagementMVC.Models;
+using VaccineManagementAPI.Models;
 
 namespace VaccineManagementMVC.Controllers
 {

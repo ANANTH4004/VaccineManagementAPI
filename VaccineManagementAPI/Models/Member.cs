@@ -10,6 +10,7 @@ namespace VaccineManagementAPI.Models
     public class Member
     {
         [Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MemberId { get; set; }
         public string MemberName { get; set; }
         public int Age { get; set; }

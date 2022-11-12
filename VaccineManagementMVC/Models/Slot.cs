@@ -11,12 +11,14 @@ namespace VaccineManagementMVC.Models
     public class Slot
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SlotId { get; set; }
         public int DoseNo { get; set; }
         [Required]
         public string Status { get; set; }
         public DateTime DateTime { get; set; }
-
+        //public int Count { get; set; }
+        public int? MemberId { get; set; }
         public int? UserId { get; set; }
         // [ForeignKey("UserId")]
         // public virtual User User { get; set; }

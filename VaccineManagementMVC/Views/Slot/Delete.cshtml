@@ -1,7 +1,8 @@
-﻿@model VaccineManagementMVC.Models.Slot
+﻿@model VaccineManagementAPI.Models.Slot
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h2>Delete</h2>
@@ -35,13 +36,21 @@
             @Html.DisplayFor(model => model.DateTime)
         </dd>
 
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.UserId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UserId)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.CenterId)

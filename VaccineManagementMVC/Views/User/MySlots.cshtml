@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<VaccineManagementAPI.Models.Slot>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "MySlots";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h2>Index</h2>
+<h2>MySlots</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -19,19 +19,22 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.DateTime.Day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime.TimeOfDay)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Count)
         </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.CenterId)
+            @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VaccineId)
+            @Html.DisplayNameFor(model => model.Center.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vaccination.VaccineName)
         </th>
         <th></th>
     </tr>
@@ -45,24 +48,25 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
+            @Html.DisplayFor(modelItem => item.DateTime.Day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime.TimeOfDay)
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.Count)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
         </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.CenterId)
+            @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VaccineId)
+            @Html.DisplayFor(modelItem => item.Center.City)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SlotId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SlotId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SlotId })
+            @Html.DisplayFor(modelItem => item.Vaccination.VaccineName)
+        </td>
+        <td>
+            @Html.ActionLink("Reshedule", "Reshedule", new { id=item.SlotId })
         </td>
     </tr>
 }

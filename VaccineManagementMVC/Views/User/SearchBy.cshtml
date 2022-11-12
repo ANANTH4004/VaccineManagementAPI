@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VaccineManagementMVC.Models.Slot>
+﻿@model IEnumerable<VaccineManagementAPI.Models.Slot>
 
 @{
     ViewBag.Title = "SearchBy";
@@ -7,9 +7,11 @@
 
 <h2>SearchBy</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@using (Html.BeginForm("SearchBy", "User", FormMethod.Get))
+{
+    @Html.TextBox("city")
+    <input type="submit" value="city" />
+}
 <table class="table">
     <tr>
         <th>
@@ -19,46 +21,51 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.DateTime.Date)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime.TimeOfDay)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CenterId)
+            @Html.DisplayNameFor(model => model.Center.City)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.VaccineId)
         </th>
-        <th></th>
+        <th>Confirm Book</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DoseNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CenterId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VaccineId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SlotId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SlotId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SlotId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoseNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Center.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineId)
+            </td>
+            <td>
+                @Html.ActionLink("Book", "Book1", new { id = item.SlotId }) 
+            </td>
+        </tr>
+    }
 
 </table>

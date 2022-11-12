@@ -19,5 +19,6 @@ namespace VaccineManagementMVC.Models
         public string PhoneNo { get; set; }
         public string AadhaarNo { get; set; }
         public virtual ICollection<Slot> Slots { get; set; }
+        public virtual ICollection<Member> Members { get; set; }
     }
 }
