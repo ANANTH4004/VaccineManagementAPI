@@ -22,6 +22,10 @@ namespace VaccineManagementMVC.Controllers
         //{
 
         //}
+        public ActionResult FAQ()
+        {
+            return View();
+        }
         public ActionResult Welcome()
         {
             return View();
