@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-
+﻿@model VaccineManagementAPI.Models.User
+<!DOCTYPE html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
@@ -31,11 +31,11 @@
                         <li style="padding-left:0px;" class="nav-item">
                             <a class="nav-link active"
                                aria-current="page"
-                               >Home</a>
+                              href="@Url.Action("Dashboard","User")" >Home</a>
                         </li>
                         
                         <li  class="nav-item"aria-current="page" >
-                            <a class="nav-link active">About</a>
+                            <a class="nav-link active" href="@Url.Action("About","Home")">About</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link active">VaccineAvailability</a>
@@ -43,7 +43,7 @@
                         <li class="nav-item">
                             <a class="nav-link active"
                                aria-current="page"
-                               >MyProfile</a>
+                              href="@Url.Action("MySlots","User" , new {id = Convert.ToInt32(TempData["userid"])})" >MyProfile</a>
                         </li>
                     </ul>
                 </div>

@@ -223,6 +223,7 @@
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\PrintDetails.cshtml" />
+    <Content Include="Views\Admin\VaccinationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

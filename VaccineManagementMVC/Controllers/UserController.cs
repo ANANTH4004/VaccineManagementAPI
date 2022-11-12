@@ -151,7 +151,7 @@ namespace VaccineManagementMVC.Controllers
             {
                 if (found.Password == password)
                 {
-                    TempData["userid"] = found.UserId;
+                    Session["userid"] = found.UserId;
                     TempData["PhoneNo"] = found.PhoneNo;
                    // loginUser = found;
                     return RedirectToAction("Dashboard");
@@ -170,11 +170,19 @@ namespace VaccineManagementMVC.Controllers
         // GET: User
         public ActionResult Dashboard()
         {
+            //int id = Convert.ToInt32(TempData["userid"]);
+            //User user = new User();
+            //HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/" + id).Result;
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    string data = response.Content.ReadAsStringAsync().Result;
+            //    user = JsonConvert.DeserializeObject<User>(data);
+            //}
             return View();
         }
         public ActionResult Index()
         {
-            int id = Convert.ToInt32(TempData["userid"]);
+            int id = Convert.ToInt32(Session["userid"]);
             User user = new User();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/"+id).Result;
             if (response.IsSuccessStatusCode)
@@ -230,7 +238,7 @@ namespace VaccineManagementMVC.Controllers
         }
         public ActionResult MySlots()
         {
-            int userid = Convert.ToInt32(TempData["UserId"]);
+            int userid = Convert.ToInt32(Session["userid"]);
             User user = new User();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
             if (response.IsSuccessStatusCode)
@@ -249,7 +257,7 @@ namespace VaccineManagementMVC.Controllers
                 String Data = response.Content.ReadAsStringAsync().Result;
                 s = JsonConvert.DeserializeObject<Slot>(Data);
             }
-            int userid =Convert.ToInt32(TempData["userid"]);
+            int userid =Convert.ToInt32(Session["userid"]);
             User user = new User();
             HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
             if (response2.IsSuccessStatusCode)
@@ -259,7 +267,7 @@ namespace VaccineManagementMVC.Controllers
             }
             if (user.Slots.Count == 0)
             {
-                s.UserId = Convert.ToInt32(TempData["userid"]);
+                s.UserId = Convert.ToInt32(Session["userid"]);
                 s.Status = "Booked";
                 //s.Count--;
                 string data = JsonConvert.SerializeObject(s);
@@ -271,7 +279,7 @@ namespace VaccineManagementMVC.Controllers
             {
                 ViewBag.msg = "Already Booked";
             }
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("MySlots");
         }
         public ActionResult Reshedule(int id)
         {
@@ -283,7 +291,7 @@ namespace VaccineManagementMVC.Controllers
                 s = JsonConvert.DeserializeObject<Slot>(Data);
             }
             var userid = s.UserId;
-            TempData["userid"] = s.UserId;
+            Session["userid"] = s.UserId;
             s.UserId = null;
             s.Status = "Available";
             //int userid = Convert.ToInt32(TempData["UserId"]);

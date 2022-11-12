@@ -1,9 +1,16 @@
 ﻿@model IEnumerable<VaccineManagementAPI.Models.User>
+
 @*@{
-    ViewBag.Title = "Search";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
-}*@
-@*<table class="table">
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table" class="table table-bordered table-hover table-sm">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -23,95 +30,36 @@
             <th></th>
         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AadhaarNo)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AadhaarNo)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                </td>
+            </tr>
+        }
 
     </table>*@
-@*<br />
-    <br />
-    <div style="margin-left:400px;">
-        @using (Html.BeginForm("Search", "Admin", FormMethod.Get))
-        {
-            @Html.TextBox("Searching")
-            <input type="submit" value="Search" />
-        }
-    </div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Password)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Age)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AadhaarNo)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Count() == 0)
-            {
-                <tr>
-                    <td colspan="3" , style="color:red">
-                        No Match Found
-                    </td>
-                </tr>
-            }
-            else
-            {
-                foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Password)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Age)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PhoneNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AadhaarNo)
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>*@
+
+
+
 
 @{
     ViewData["Title"] = "Index";
@@ -128,9 +76,19 @@
 <marquee style="color:black;font-weight:bold;"><h5>Hi admin!,This is the Users List,You can Add ,Edit,Delete,Update</h5></marquee>
 
 <p>
-    <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color:#2dee07; color: white;margin-top:80px; ">@Html.ActionLink("Add Users", "Create") </button>
-
+    <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color:#46cead; color: white;margin-top:30px; ">@Html.ActionLink("Add Users", "Create") </button>
+    <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color: #46cead; color: white; margin-top: 30px; float: right ">@Html.ActionLink("Add Slots", "Index", "Slot", null, null) </button>
 </p>
+
+@*<div class="container top">
+        <div class="search-container">
+            <input type="text" name="search" placeholder="Search..." class="search-input">
+            <a href="@Url.Action("Search", "Admin" , new {Searchi}) "class="search-btn">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+    </div>*@
+
 <div style="margin-left:400px;">
     @using (Html.BeginForm("Search", "Admin", FormMethod.Get))
     {
@@ -160,8 +118,8 @@
         </thead>
 
         <tbody>
-            
-                @if (Model.Count() != 0)
+            @{
+                if (Model != null)
                 {
                     foreach (var Data in Model)
                     {
@@ -177,6 +135,9 @@
                                     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>@Html.ActionLink("..", "Edit", new { id = Data.UserId })</button> <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
                                         <span class="glyphicon glyphicon-trash"></span> @Html.ActionLink("..", "Delete", new { id = Data.UserId })
                                     </button>
+                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
+                                        <span class="glyphicon glyphicon-check"></span> @Html.ActionLink("..", "VaccinationDetails", new { id = Data.UserId })
+                                    </button>
                                 </p>
 
                             </td>
@@ -185,15 +146,7 @@
                         </tr>
                     }
                 }
-                else
-                {
-                    <tr>
-                        <td colspan="3" , style="color:red">
-                            No Match Found
-                        </td>
-                    </tr>
-                }
-            
+            }
         </tbody>
 
     </table>

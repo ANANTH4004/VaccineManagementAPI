@@ -78,31 +78,31 @@ namespace VaccineManagementMVC.Controllers
 
             return View();
         }
-        public ActionResult PrintDetails()
-        {
-            User u = new User();
-            u.AadhaarNo = "23123445";
-            u.PhoneNo = "9787799646";
-            u.Age = 16;
-            u.Name = "ANAND";
+        //public ActionResult PrintDetails()
+        //{
+        //    User u = new User();
+        //    u.AadhaarNo = "23123445";
+        //    u.PhoneNo = "9787799646";
+        //    u.Age = 16;
+        //    u.Name = "ANAND";
 
-            return View(u);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public FileResult Export(string ExportData)
-        {
-            using (MemoryStream stream = new System.IO.MemoryStream())
-            {
-                StringReader reader = new StringReader(ExportData);
-                Document PdfFile = new Document(PageSize.A4);
-                PdfWriter writer = PdfWriter.GetInstance(PdfFile, stream);
-                PdfFile.Open();
-                XMLWorkerHelper.GetInstance().ParseXHtml(writer, PdfFile, reader);
-                PdfFile.Close();
-                return File(stream.ToArray(), "application/pdf", "ExportData.pdf");
-            }
-        }
+        //    return View(u);
+        //}
+        //[HttpPost]
+        //[ValidateInput(false)]
+        //public FileResult Export(string ExportData)
+        //{
+        //    using (MemoryStream stream = new System.IO.MemoryStream())
+        //    {
+        //        StringReader reader = new StringReader(ExportData);
+        //        Document PdfFile = new Document(PageSize.A4);
+        //        PdfWriter writer = PdfWriter.GetInstance(PdfFile, stream);
+        //        PdfFile.Open();
+        //        XMLWorkerHelper.GetInstance().ParseXHtml(writer, PdfFile, reader);
+        //        PdfFile.Close();
+        //        return File(stream.ToArray(), "application/pdf", "ExportData.pdf");
+        //    }
+        //}
         public void CreatePDFDocument(string PhoneNo)
         {
             using (PdfDocument document = new PdfDocument())

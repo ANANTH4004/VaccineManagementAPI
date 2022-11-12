@@ -131,6 +131,18 @@ namespace VaccineManagementMVC.Controllers
 
             return View(users.Where(x => x.Name.Contains(searching) || searching == null).ToList());
         }
+        public ActionResult VaccinationDetails(int id)
+        {
+            User user = new User();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/"+id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                user = JsonConvert.DeserializeObject<User>(data);
+            }
+
+            return View(user.Slots);
+        }
        
 
     }

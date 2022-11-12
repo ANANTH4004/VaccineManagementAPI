@@ -76,9 +76,10 @@
 <marquee style="color:black;font-weight:bold;"><h5>Hi admin!,This is the Users List,You can Add ,Edit,Delete,Update</h5></marquee>
 
 <p>
-    <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color:#2dee07; color: white;margin-top:80px; ">@Html.ActionLink("Add Users", "Create") </button>
-
+    <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color:#46cead; color: white;margin-top:30px; ">@Html.ActionLink("Add Users", "Create") </button>
+    <button style="border-radius: 30px; border: none; padding: 15px 20px; background-color: #46cead; color: white; margin-top: 30px; float: right ">@Html.ActionLink("Add Slots", "Index", "Slot", null, null) </button>
 </p>
+
 @*<div class="container top">
     <div class="search-container">
         <input type="text" name="search" placeholder="Search..." class="search-input">
@@ -134,6 +135,9 @@
                                     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>@Html.ActionLink("..", "Edit", new { id = Data.UserId })</button> <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
                                         <span class="glyphicon glyphicon-trash"></span> @Html.ActionLink("..", "Delete", new { id = Data.UserId })
                                     </button>
+                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
+             <span class="glyphicon glyphicon-check"></span> @Html.ActionLink("..", "VaccinationDetails", new { id = Data.UserId })
+        </button>
                                 </p>
 
                             </td>
