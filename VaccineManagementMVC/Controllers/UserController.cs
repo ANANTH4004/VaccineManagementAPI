@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using VaccineManagementAPI.Models;
 //using VaccineManagementMVC.Models;
+//using VaccineManagementMVC.Models;
 //using Member = VaccineManagementAPI.Models.Member;
 //using Slot = VaccineManagementAPI.Models.Slot;
 //using User = VaccineManagementAPI.Models.User;
@@ -152,7 +153,7 @@ namespace VaccineManagementMVC.Controllers
                 if (found.Password == password)
                 {
                     Session["userid"] = found.UserId;
-                    TempData["PhoneNo"] = found.PhoneNo;
+                        Session["PhoneNo"] = found.PhoneNo;
                    // loginUser = found;
                     return RedirectToAction("Dashboard");
                 }
@@ -196,17 +197,30 @@ namespace VaccineManagementMVC.Controllers
         {
             return View();
         }
+        public ActionResult FamilyMember()
+        {
+            int userid = Convert.ToInt32(Session["userid"]);
+            User user = new User();
+            HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
+            if (response2.IsSuccessStatusCode)
+            {
+                String Data = response2.Content.ReadAsStringAsync().Result;
+                user = JsonConvert.DeserializeObject<User>(Data);
+            }
+
+            return View(user.Members);
+        }
         [HttpPost]
         public ActionResult AddMember(Member member)
         {
-            member.UserId = Convert.ToInt32(TempData["userid"]);
-            member.PhoneNo = TempData["PhoneNo"].ToString();
+            member.UserId = Convert.ToInt32(Session["userid"]);
+            member.PhoneNo = Session["PhoneNo"].ToString();
             string data = JsonConvert.SerializeObject(member);
             StringContent content = new StringContent(data,Encoding.UTF8 , "application/json");
             HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/member" , content).Result;
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Dashboard");
             }
             return View();
         }
@@ -238,7 +252,8 @@ namespace VaccineManagementMVC.Controllers
         }
         public ActionResult MySlots()
         {
-            int userid = Convert.ToInt32(Session["userid"]);
+             int userid = Convert.ToInt32(Session["userid"]);
+            //int userid = 1;
             User user = new User();
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
             if (response.IsSuccessStatusCode)
@@ -311,8 +326,90 @@ namespace VaccineManagementMVC.Controllers
             HttpResponseMessage response3 = client.PutAsync(baseAddress + "/user/" + user.UserId, Content).Result;
             return RedirectToAction("Search");
         }
-      
-       
-
+        public ActionResult Book2(int id)
+        {
+            Slot s = new Slot();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/slot/" + id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                String Data = response.Content.ReadAsStringAsync().Result;
+                s = JsonConvert.DeserializeObject<Slot>(Data);
+            }
+            int userid = Convert.ToInt32(Session["userid"]);
+            User user = new User();
+            HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
+            if (response2.IsSuccessStatusCode)
+            {
+                String Data = response2.Content.ReadAsStringAsync().Result;
+                user = JsonConvert.DeserializeObject<User>(Data);
+            }
+            var ans =  user.Members.FirstOrDefault();
+            if (ans != null)
+            {
+                if (ans.mslots.Count() == 0)
+                {
+                    s.UserId = null;
+                    s.MemberId = ans.MemberId;
+                    s.Status = "Booked";
+                    //s.Count--;
+                    string data = JsonConvert.SerializeObject(s);
+                    StringContent Content = new StringContent(data, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response1 = client.PutAsync(baseAddress + "/slot/" + s.SlotId, Content).Result;
+                    return RedirectToAction("MemberSlot", new { id = s.MemberId });
+                }
+                else
+                {
+                    ViewBag.msg = "Already Booked";
+                }
+            }
+            else
+            {
+                return RedirectToAction("AddMember");
+            }
+            return RedirectToAction("MemberSlot",new { id = ans.MemberId });
+        }
+        public ActionResult MemberSlot(int id)
+        {
+            Member m = new Member();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/member/" + id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                String Data = response.Content.ReadAsStringAsync().Result;
+                m = JsonConvert.DeserializeObject<Member>(Data);
+            }
+            return View(m);
+        }
+        public ActionResult MemberDetails()
+        {
+            int userid = Convert.ToInt32(Session["userid"]);
+            User user = new User();
+            HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user/" + userid).Result;
+            if (response2.IsSuccessStatusCode)
+            {
+                String Data = response2.Content.ReadAsStringAsync().Result;
+                user = JsonConvert.DeserializeObject<User>(Data);
+            }
+            int id = user.Members.First().MemberId;
+            Member m = new Member();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/member/" + id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                String Data = response.Content.ReadAsStringAsync().Result;
+                m = JsonConvert.DeserializeObject<Member>(Data);
+            }
+            return View(m);
+        }
+        public ActionResult VaccineAvailability()
+        {
+            List<Slot> s = new List<Slot>();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/slot").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                s = JsonConvert.DeserializeObject<List<Slot>>(data);
+            }
+            var ans = s.Where(x => x.Status == "Available");
+            return View(ans);  
+        }
     }
 }

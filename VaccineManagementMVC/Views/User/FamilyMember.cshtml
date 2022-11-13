@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VaccineManagementAPI.Models.Member>
+
+@{
+    ViewBag.Title = "FamilyMember";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>FamilyMember</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.AadhaarNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AadhaarNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @Html.ActionLink("MemberDetails", "MemberDetails", new { id=item.MemberId }) 
+           
+        </td>
+    </tr>
+}
+
+</table>

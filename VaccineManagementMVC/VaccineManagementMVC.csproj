@@ -224,6 +224,10 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\PrintDetails.cshtml" />
     <Content Include="Views\Admin\VaccinationDetails.cshtml" />
+    <Content Include="Views\User\MemberSlot.cshtml" />
+    <Content Include="Views\User\VaccineAvailability.cshtml" />
+    <Content Include="Views\User\MemberDetails.cshtml" />
+    <Content Include="Views\User\FamilyMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,20 +8,31 @@
                         ,"Status"
                         ,"Date"
                         ,"TimeOfDay"
-                        ,"UserId"
                         ,"City",
-                        "VaccineId"
-                        ,"Confirm Book"
+                        "Vaccine"
+                        ,"Personal",
+                        "Family Member"
                         };
 }
 
 <h2>Search By City</h2>
-
+<br />
+<br />
 @using (Html.BeginForm("SearchBy", "User", FormMethod.Get))
-{
-    @Html.TextBox("city")
-    <input type="submit" value="city" />
-}
+    {
+        @Html.TextBox("city")
+        <input type="submit" value="city" />
+    }
+@*<div class="input-group">
+    <div class="form-outline">
+        <input type="search" id="form1" class="form-control" />
+        <label class="form-label" for="form1">Search</label>
+    </div>
+    <button type="button" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+    </button>
+</div>*@
+
 @*<div class="table" style="text-align:center;margin-top:70px;">
        <table id="myTable" class="table table-bordered table-hover table-sm">
            <thead style="background-color:#118ee8;color:white;">
@@ -118,17 +129,20 @@
                         @Html.DisplayFor(modelItem => item.DateTime.TimeOfDay)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Center.City)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.VaccineId)
+                        @Html.DisplayFor(modelItem => item.Vaccination.VaccineName)
                     </td>
                     <td>
                         @Html.ActionLink("Book", "Book1", new { id = item.SlotId })
                     </td>
+                    <td>
+                        @Html.ActionLink("Book", "Book2", new { id = item.SlotId })
+                    </td>
+                    @*<td>
+                            @Html.ActionLink("Book", "Book2", new { id = item.SlotId,  })
+                        </td>*@
                 </tr>
             }
         </tbody>

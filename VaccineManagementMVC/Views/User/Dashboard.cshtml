@@ -51,7 +51,7 @@
                                                 <br />
                                                 <br />
 
-                                                <div class="mt"> <a href="@Url.Action("Search","User")" tabindex="0" class="btn bg-blue-ui white read">To Book</a> </div>
+                                                <div class="mt"> <a href="@Url.Action("SearchBy", "User", new {city ="a"})" tabindex="0" class="btn bg-blue-ui white read">To Book</a> </div>
 
                                             </div>
                                         </div>
@@ -393,9 +393,8 @@
                                         <strong class="d-inline-block mb-2 text-primary">Personal</strong>
 
                                         <p class="card-text mb-auto">Now Precaution dose for 18-59 age group free at Government Vaccination Centre.</p>
-                                        <a class="btn btn-outline-primary btn-sm" role="button" href="">BookYourSlot</a>
+                                        <a class="btn btn-outline-primary btn-sm" role="button"  href="@Url.Action("SearchBy", "User", new {city ="Enter City Here"})">BookYourSlot</a>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -405,8 +404,7 @@
 
                                         <p class="card-text mb-auto">Book Slot for Family Member,It is a precaution dose </p>
                                         <br />
-
-                                        <a class="btn btn-outline-success btn-sm" style="color:green ">BookSlotForFamilyMember </a>
+                                        <a  class="btn btn-outline-success btn-sm" href="@Url.Action("FamilyMember","User")" style="color:green ">BookvSlot For Family Member </a>
                                     </div>
 
                                 </div>

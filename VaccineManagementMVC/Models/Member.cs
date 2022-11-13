@@ -18,6 +18,7 @@ namespace VaccineManagementMVC.Models
         public string AadhaarNo { get; set; }
         [Required]
         public string PhoneNo { get; set; }
+        public ICollection<Slot> mslots { get; set; }   
 
     }
 }

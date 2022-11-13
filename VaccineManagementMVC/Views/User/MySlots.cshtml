@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>MySlots</h2>
+<h2>My Profile</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -19,7 +17,7 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime.Day)
+            @Html.DisplayNameFor(model => model.DateTime.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateTime.TimeOfDay)
@@ -27,16 +25,16 @@
         @*<th>
                 @Html.DisplayNameFor(model => model.Count)
             </th>*@
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.UserId)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Center.City)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Vaccination.VaccineName)
         </th>
-        <th></th>
+        <th>Reschedule</th>
     </tr>
 
     @foreach (var item in Model)
@@ -57,9 +55,9 @@
             @*<td>
                     @Html.DisplayFor(modelItem => item.Count)
                 </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.UserId)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Center.City)
             </td>
@@ -67,7 +65,7 @@
                 @Html.DisplayFor(modelItem => item.Vaccination.VaccineName)
             </td>
             <td>
-                @Html.ActionLink("Reshedule", "Reshedule", new { id = item.SlotId })
+                @Html.ActionLink("Reschedule", "Reshedule", new { id = item.SlotId })
             </td>
         </tr>
     }

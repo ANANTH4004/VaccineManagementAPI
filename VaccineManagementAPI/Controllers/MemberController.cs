@@ -19,6 +19,10 @@ namespace VaccineManagementAPI.Controllers
         {
             return op.GetMember();
         }
+        public Member Get(int id)
+        {
+            return op.GetMember(id);
+        }
 
         // POST api/<controller>
         public void Post([FromBody] Member value)

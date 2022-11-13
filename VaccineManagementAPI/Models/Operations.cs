@@ -209,5 +209,10 @@ namespace VaccineManagementAPI.Models
             context.VaccinationStocks.Remove(found);
             context.SaveChanges();
         }
+
+        public Member GetMember(int id)
+        {
+            return context.Members.ToList().Find(x => x.MemberId == id);
+        }
     }
 }
