@@ -79,16 +79,14 @@ namespace VaccineManagementAPI.Models
         public void PutUser(int id, User user)
         {
            var found =  context.Users.ToList().Find(x => x.UserId == id);
-           // context.Users.Remove(found);
             found.PhoneNo = user.PhoneNo;
             found.AadhaarNo = user.AadhaarNo;
             found.UserId = user.UserId;
-            found.Members = user.Members;
+           // found.Members = user.Members;
             found.Name = user.Name;
             found.Age = user.Age;
             found.Password = user.Password;
-            found.Slots = user.Slots;
-           // context.Users.Add(user);
+            found.Slots = null ;
             context.SaveChanges();
         }
         public void PutUser(string PhoneNo , User user)

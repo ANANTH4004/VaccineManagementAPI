@@ -359,6 +359,7 @@ namespace VaccineManagementMVC.Controllers
                 }
                 else
                 {
+
                     ViewBag.msg = "Already Booked";
                 }
             }

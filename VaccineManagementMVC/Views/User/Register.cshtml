@@ -1,11 +1,166 @@
-﻿
+﻿@*@{
+        ViewBag.Title = "Home Page";
+
+    }
+    <body style="margin-top: 50px; background-image: url(https://blog.cloudflare.com/content/images/2021/01/Ensuring-COVID-19-Vaccine-Registration-Sites-Can-Keep-Up-With-Demand--OG.jpg); background-repeat: no-repeat ">
+
+        <section class="vh-500 bg-image" style="margin-left:20px;">
+            <div class="mask d-flex  h-100 ">
+                <div class="container h-50">
+                    <div class="row d-flex ">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="card" style=" border-radius: 25px;">
+
+                                <div class="card-body p-5" style="margin-left:0px">
+                                    <div>
+                                        <h6 style="color:red;" class="text-center">@TempData["msg"]</h6>
+                                    </div>
+
+                                    <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">Register</h2>
+
+
+
+                                    @using (Html.BeginForm("Register", "User",
+    new { ReturnUrl = ViewBag.ReturnUrl },
+    FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+
+                                        <div class="form-outline mb-4">
+
+                                            <label class="form-label" for="form3Example1cg">Name</label>
+                                            <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="Name" required />
+                                        </div>
+
+
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3cg">Password</label>
+                                            <input type="password" id="password" class="form-control form-control-lg" name="Password" required />
+                                        </div>
+                                        <div class="form-outline mb-4">
+
+                                            <label class="form-label" for="form3Example3cg">ConformPassword</label>
+                                            <input type="password" id="confirm_password" class="form-control form-control-lg" name="ConformPassword" onkeyup='check();' required />
+                                            <span id='message'></span>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+
+                                            <label class="form-label" for="form3Example4cg">Age</label>
+                                            <input type="number" id="age" onkeyup='agecheck();' class="form-control form-control-lg" name="Age" required />
+                                            <span id='agemessage'></span>
+                                        </div>
+                                        <div class="form-outline mb-4">
+
+                                            <label class="form-label" for="form3Example4cg">PhoneNumber</label>
+                                            <input type="number" id="form3Example4cg" class="form-control form-control-lg" name="PhoneNumber" placeholder="Enter a valid PhoneNo" pattern="[7-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
+                                            <span id="phoneerror" style="color:red"></span>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+
+                                            <label class="form-label" for="form3Example4cdg">AadharNo</label>
+                                            <input type="text" id="form3Example4cdg" class="form-control form-control-lg" name="AadharNo" required />
+                                        </div>
+
+                                        <br />
+                                        <br />
+
+
+
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" style="height:50px; width:100px"
+                                                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                                Register
+
+                                            </button>
+                                        </div>
+                                        <br />
+
+                                        <p class=" text-muted mt-5 mb-0">
+                                            Already have an account? <a href="#!"
+                                                                        class="fw-bold text-body"><u>Login here</u></a>
+                                        </p>
+
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            var input = document.getElementById('form3Example4cg');
+            input.oninvalid = function (event) {
+                var ans = document.getElementById("phoneerror");
+                ans.innerHTML = "Enter a Valid Mobile Number";
+            }
+
+            //Password & Confirm Password Check
+            var check = function () {
+                if (document.getElementById('password').value ==
+                    document.getElementById('confirm_password').value) {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = 'Password and Confirm Password are Same';
+                } else {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = 'Password and Confirm Password must be same';
+                }
+                }
+
+            var agecheck = function () {
+                if (document.getElementById('age').value < 18) {
+                    document.getElementById('agemessage').style.color = 'red';
+                    document.getElementById('agemessage').innerHTML = 'Age Must be greater than 18';
+                } else {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = 'age > 18';
+                }
+
+        </script>
+    </body>
+        <style>
+
+
+            .gradient-custom-3 {
+                background-image: url(https://www.un.org/sites/un2.un.org/files/who_ve_topic_6_banner.jpg);
+                height: 50%;
+                width: auto;
+                background-repeat: no-repeat;
+            }
+        </style>*@
+
+
+
 
 @{
-    ViewBag.Title = "Home Page";
-
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_RegisterLayout.cshtml";
 }
-<body style="margin-top: 50px; background-image: url(https://blog.cloudflare.com/content/images/2021/01/Ensuring-COVID-19-Vaccine-Registration-Sites-Can-Keep-Up-With-Demand--OG.jpg); background-repeat: no-repeat ">
-   
+
+<head>
+    <style>
+
+
+        .gradient-custom-3 {
+            background-image: url('../../images/vaccinationbackground1.jpg');
+            background-color: aqua;
+            height: 50%;
+            width: auto;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+
+
+
+
+<body style="margin-top: 50px; background-image:url('../../images/vaccinationbackground1.jpg') ; background-repeat: no-repeat ">
+
     <section class="vh-500 bg-image" style="margin-left:20px;">
         <div class="mask d-flex  h-100 ">
             <div class="container h-50">
@@ -17,7 +172,7 @@
                                 <div>
                                     <h6 style="color:red;" class="text-center">@TempData["msg"]</h6>
                                 </div>
-                               
+
                                 <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">Register</h2>
 
 
@@ -55,7 +210,7 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                                     <div class="form-outline mb-4">
 
                                         <label class="form-label" for="form3Example4cg">PhoneNumber</label>
-                                        <input type="number" id="form3Example4cg" class="form-control form-control-lg" name="PhoneNumber"  placeholder="Enter a valid PhoneNo"pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
+                                        <input type="number" id="form3Example4cg" class="form-control form-control-lg" name="PhoneNumber" placeholder="Enter a valid PhoneNo" pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
                                     </div>
 
                                     <div class="form-outline mb-4">
@@ -86,20 +241,10 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
 
                                 }
                             </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 </body>
-    <style>
-
-
-        .gradient-custom-3 {
-            background-image: url(https://www.un.org/sites/un2.un.org/files/who_ve_topic_6_banner.jpg);
-            height: 50%;
-            width: auto;
-            background-repeat: no-repeat;
-        }
-    </style>
