@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg" style="background-color:white; font-weight: bold; position:absolute; top: 0; left: 0;  width: 100%;">
             <div class="container-fluid" id="list">
 
-<button class="navbar-toggler"
+                <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent"
@@ -31,19 +31,26 @@
                         <li style="padding-left:0px;" class="nav-item">
                             <a class="nav-link active"
                                aria-current="page"
-                              href="@Url.Action("Dashboard","User")" >Home</a>
+                               href="@Url.Action("Dashboard","User")">Home</a>
                         </li>
-                        
-                        <li  class="nav-item"aria-current="page" >
+
+                        @*<li class="nav-item" aria-current="page">
                             <a class="nav-link active" href="@Url.Action("About","Home")">About</a>
-                        </li>
+                        </li>*@
                         <li class="nav-item ">
                             <a class="nav-link active" href="@Url.Action("VaccineAvailability", "User" )">VaccineAvailability</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="@Url.Action("FamilyMember","User")">Member</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active"
                                aria-current="page"
-                              href="@Url.Action("MySlots","User" , new {id = Convert.ToInt32(Session["userid"])})" >MyProfile</a>
+                               href="@Url.Action("MySlots","User" , new {id = Convert.ToInt32(Session["userid"])})">MyProfile</a>
+                        </li>
+                        <li>
+                            <a class="nav-link active"
+                               aria-current="page" href="@Url.Action("Login" , "User")" onclick="preventBack()">LogOut</a>
                         </li>
                     </ul>
                 </div>
@@ -64,6 +71,11 @@
     <div>
         @RenderBody()
     </div>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </body>
 
 

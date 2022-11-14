@@ -220,7 +220,7 @@ namespace VaccineManagementMVC.Controllers
             HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/member" , content).Result;
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("FamilyMember");
             }
             return View();
         }
@@ -324,7 +324,7 @@ namespace VaccineManagementMVC.Controllers
             string data = JsonConvert.SerializeObject(user);
             StringContent Content = new StringContent(data, Encoding.UTF8, "application/json");
             HttpResponseMessage response3 = client.PutAsync(baseAddress + "/user/" + user.UserId, Content).Result;
-            return RedirectToAction("Search");
+            return RedirectToAction("SearchBy" ,new {city="a"});
         }
         public ActionResult Book2(int id)
         {

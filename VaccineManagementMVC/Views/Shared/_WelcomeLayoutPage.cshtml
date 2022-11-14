@@ -15,7 +15,8 @@
         body {
             margin: 0;
             padding: 0;
-            background: #fff;
+           background-image:url(../../images/welcomebg.png);
+           background-repeat:no-repeat;
             font-family: 'Raleway',sans-serif;
             color: #fff;
         }
@@ -23,7 +24,8 @@
         .banner {
             height: 100vh;
             width: 100%;
-            background-color:antiquewhite;
+            /* background-color:antiquewhite;*/
+            background-image: url(../../images/welcomebg.png);
             background-repeat: no-repeat;
             background-position: top;
             background-size: cover;
@@ -34,7 +36,7 @@
             }
 
             .banner .navbar-brand {
-                color: #2e75eb;
+                color: #ffffff;
                 font-size: 1.8rem;
                 font-weight: 700;
                 margin-left: 10%;
@@ -49,7 +51,7 @@
             }
 
                 .banner .nav li a {
-                    color: red;
+                    color: #0b27ee;
                     font-size: 1.2rem;
                 }
 
@@ -104,11 +106,11 @@
 
 
                         <li>
-                            <a class="nav-link" href="#">FAQ</a>
+                            <a class="nav-link" href="@Url.Action("FAQ", "Home")">FAQ</a>
                         </li>
-                        <li>
+                        @*<li>
                             <a class="nav-link" href="#">Contact</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </nav>
             </div>

@@ -148,7 +148,7 @@
         .gradient-custom-3 {
             background-image: url('../../images/vaccinationbackground1.jpg');
             background-color: aqua;
-            height: 50%;
+            height: auto;
             width: auto;
             background-repeat: no-repeat;
         }
@@ -159,7 +159,7 @@
 
 
 
-<body style="margin-top: 50px; background-image:url('../../images/vaccinationbackground1.jpg') ; background-repeat: no-repeat ">
+<body style="margin-top: 50px; background:linear-gradient(120deg,#90e8e6eb,#38c465); ">
 
     <section class="vh-500 bg-image" style="margin-left:20px;">
         <div class="mask d-flex  h-100 ">
@@ -210,7 +210,7 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                                     <div class="form-outline mb-4">
 
                                         <label class="form-label" for="form3Example4cg">PhoneNumber</label>
-                                        <input type="number" id="form3Example4cg" class="form-control form-control-lg" name="PhoneNumber" placeholder="Enter a valid PhoneNo" pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
+                                        <input type="number" id="form3Example4cg" class="form-control form-control-lg" name="PhoneNumber" pattern="[1-9]{1}[0-9]{9}" title="Please use a 10 digit Mobile Number" required />
                                     </div>
 
                                     <div class="form-outline mb-4">
@@ -226,15 +226,15 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
 
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" style="height:50px; width:100px"
-                                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                                class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">
                                             Register
 
                                         </button>
                                     </div>
                                     <br />
 
-                                    <p class=" text-muted mt-5 mb-0">
-                                        Already have an account? <a href="#!"
+                                    <p class=" text-muted mt-5 mb-0" style="color:white">
+                                        Already have an account? <a href="@Url.Action("Login" , "User")"
                                                                     class="fw-bold text-body"><u>Login here</u></a>
                                     </p>
 

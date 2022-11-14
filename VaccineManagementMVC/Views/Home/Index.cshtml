@@ -8,6 +8,7 @@
 <!--@model IEnumerable<VaccineManagementAPI.Models.User>
 @{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <div class="jumbotron">
@@ -37,16 +38,23 @@
         </script>
     </div>
 
+
 </div>-->
-@{Html.BeginForm("CreatePDFDocument", "Home", FormMethod.Get);
-    {
-    <div>
-        @Html.TextBox("PhoneNo")
-        <input type="submit" value="PhoneNo" />
+<h1 class="text-success text-center" >Enter Mobile Number for Download your Certificate</h1>
+<br />
+<br />
+<br />
+    <div style="display:flex; justify-content:center;align-items:center">
+        @{Html.BeginForm("CreatePDFDocument", "Home", FormMethod.Get);
+            {
+                <div >
+                    @Html.TextBox("PhoneNo")
+                    <input type="submit" value="Download" />
+                </div>
+                @*<div>
+                    <input type="submit" value="Generate PDF Document" style="width:150px;height:27px" />
+                </div>*@
+            }
+            Html.EndForm();
+        }
     </div>
-        @*<div>
-            <input type="submit" value="Generate PDF Document" style="width:150px;height:27px" />
-        </div>*@
-    }
-    Html.EndForm();
-}

@@ -30,13 +30,15 @@
                     <li class="nav-item ">
                         <a class="nav-link active" href="@Url.Action("FamilyMember","User")">Member</a>
                     </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li class="nav-item">
                         <a class="nav-link active" href="@Url.Action("MySlots","User")">
                             MyProfile
                         </a>
                     </li>
+                    <li><a class="nav-link active"
+                               aria-current="page" href="@Url.Action("Login" , "User")" onclick="preventBack()">LogOut</a></li>
                 </ul>
 
             </div>
@@ -56,5 +58,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </body>
 </html>
