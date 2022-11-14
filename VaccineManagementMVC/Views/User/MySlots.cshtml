@@ -75,7 +75,6 @@
                         "UserId",
                         "City",
                         "VaccineName",
-                        "SlotId",
                         "Reschedule"
 
                         };
@@ -131,9 +130,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Vaccination.VaccineName)
                         </td>
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.SlotId)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.ActionLink("Reschedule", "Reshedule", new { id = item.SlotId })
                         </td>

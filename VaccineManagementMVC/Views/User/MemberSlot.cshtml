@@ -1,57 +1,146 @@
 ﻿@model VaccineManagementAPI.Models.Member
 
+@*@{
+        ViewBag.Title = "MemberSlot";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+
+    <h2>Member Details</h2>
+
+    <p>
+        @Html.ActionLink("Add Member", "AddMember")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AadhaarNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mslots.FirstOrDefault().DoseNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mslots.FirstOrDefault().Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mslots.FirstOrDefault().Center.City)
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.AadhaarNo)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.mslots.First().DoseNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.mslots.First().Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.mslots.First().Center.City)
+                </td>
+            </tr>
+
+
+    </table>*@
 @{
-    ViewBag.Title = "MemberSlot";
+    ViewBag.Title = "MySlots";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+    string[] TableHeaders = new string[] {"Member Name"
+                        ,"Age"
+                       ,"Aadhaar Number",
+                       "Date"
+                        ,"Dose No",
+                        "Status",
+                        "City"
+                        };
 }
 
-<h2>Member Details</h2>
-
-<p>
-    @Html.ActionLink("Add Member", "AddMember")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MemberName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AadhaarNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mslots.FirstOrDefault().DoseNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mslots.FirstOrDefault().Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mslots.FirstOrDefault().Center.City)
-        </th>
-
-    </tr>
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => Model.MemberName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Model.AadhaarNo)
-        </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.mslots.First().DoseNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.mslots.First().Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.mslots.First().Center.City)
-            </td>
-        </tr>
 
 
-</table>
+
+
+<div class="table" style="text-align:center;margin-top:70px;">
+
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+
+        <thead style="background-color:#118ee8;color:white;">
+            <tr style="align-items:center;">
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th style="text-align:center;">
+                            @head
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.MemberName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Age)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => Model.AadhaarNo)
+                </td>
+                @if (Model != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.mslots.First().DateTime)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.mslots.First().DoseNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.mslots.First().Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.mslots.First().Center.City)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <p>NIL</p>
+                    </td>
+                    <td>
+                        <p>NIL</p>
+                    </td>
+                    <td>
+                        <p>NIL</p>
+                    </td>
+
+                    <td>
+                        <p>NIL</p>
+                    </td>
+                }
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+</div>

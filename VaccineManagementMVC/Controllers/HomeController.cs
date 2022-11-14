@@ -113,20 +113,29 @@ namespace VaccineManagementMVC.Controllers
                 //Set the standard font
                 PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
                 User user = new User();
-                Slot s =new  Slot();
+                
                 HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user?PhoneNo=" + PhoneNo).Result;
                 if (response2.IsSuccessStatusCode)
                 {
                     String Data = response2.Content.ReadAsStringAsync().Result;
                     user = JsonConvert.DeserializeObject<User>(Data);
                 }
-                s = user.Slots.First();
-                //Draw the text
-                graphics.DrawString($"Name : {user.Name} \n Age : {user.Age} \n Phone Number : {PhoneNo} \n" +
-                    $"Status : {s.Status} \n Date : {s.DateTime.Date} \n City : {s.Center.City} \n Vaccine {s.Vaccination.VaccineName}", font, PdfBrushes.Black, new PointF(0, 0));
+               var slots = user.Slots;
+                if(slots == null)
+                {
+                     RedirectToAction("SearchBy" , new {city= "a"});
+                }
+                else
+                {
+                    Slot s = slots.First();
+                    graphics.DrawString($"Name : {user.Name} \n Age : {user.Age} \n Phone Number : {PhoneNo} \n" +
+                   $"Status : {s.Status} \n Date : {s.DateTime.Date.ToShortDateString()} \n City : {s.Center.City} \n Vaccine {s.Vaccination.VaccineName} \n Time : {s.DateTime.TimeOfDay}", font, PdfBrushes.Black, new PointF(0, 0));
 
-                // Open the document in browser after saving it
-                document.Save("Output.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
+                    // Open the document in browser after saving it
+                    document.Save("Certificate.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
+                }
+                //Draw the text
+               
             }
         }
     }
