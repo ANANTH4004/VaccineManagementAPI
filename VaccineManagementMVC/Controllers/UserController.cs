@@ -71,7 +71,7 @@ namespace VaccineManagementMVC.Controllers
                     }
                     else
                     {
-                        TempData["msg"] = "Password and confirm  password not Matched Please check password and confirm password while Entering";
+                        TempData["msg"] = "Password and Confirm Password Must be Same";
                     }
                 }
                 return RedirectToAction("Register");

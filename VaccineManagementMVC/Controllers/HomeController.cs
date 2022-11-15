@@ -111,7 +111,7 @@ namespace VaccineManagementMVC.Controllers
                 PdfGraphics graphics = page.Graphics;
 
                 //Set the standard font
-                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
+                PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman,20);
                 User user = new User();
                 
                 HttpResponseMessage response2 = client.GetAsync(client.BaseAddress + "/user?PhoneNo=" + PhoneNo).Result;
@@ -120,16 +120,18 @@ namespace VaccineManagementMVC.Controllers
                     String Data = response2.Content.ReadAsStringAsync().Result;
                     user = JsonConvert.DeserializeObject<User>(Data);
                 }
-               var slots = user.Slots;
-                if(slots == null)
+               
+                if(user == null)
                 {
+
                      RedirectToAction("SearchBy" , new {city= "a"});
                 }
                 else
                 {
+                    var slots = user.Slots;
                     Slot s = slots.First();
                     graphics.DrawString($"Name : {user.Name} \n Age : {user.Age} \n Phone Number : {PhoneNo} \n" +
-                   $"Status : {s.Status} \n Date : {s.DateTime.Date.ToShortDateString()} \n City : {s.Center.City} \n Vaccine {s.Vaccination.VaccineName} \n Time : {s.DateTime.TimeOfDay}", font, PdfBrushes.Black, new PointF(0, 0));
+                   $"Status : {s.Status} \n Date : {s.DateTime.Date.ToShortDateString()} \n City : {s.Center.City} \n Vaccine {s.Vaccination.VaccineName} \n Time : {s.DateTime.TimeOfDay}", font, PdfBrushes.Black, new PointF(10, 10));
 
                     // Open the document in browser after saving it
                     document.Save("Certificate.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);

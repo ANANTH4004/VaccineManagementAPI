@@ -17,7 +17,7 @@ namespace VaccineManagementAPI.Controllers
             return op.GetAdmin();
         }
 
-        // GET api/<controller>/5
+        // GET api/<controller>?id="anand@gmail.com"
         public Admin Get(string id)
         {
             return op.GetAdmin(id);
@@ -29,7 +29,7 @@ namespace VaccineManagementAPI.Controllers
             op.PostAdmin(value);
         }
 
-        // PUT api/<controller>/5
+        // PUT api/<controller>?id="anand@gmail.com"
         public void Put(string id, [FromBody] Admin value)
         {
             op.PutAdmin(id, value);
