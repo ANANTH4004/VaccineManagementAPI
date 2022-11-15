@@ -135,6 +135,7 @@ namespace VaccineManagementMVC.Controllers
 
                     // Open the document in browser after saving it
                     document.Save("Certificate.pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
+                    
                 }
                 //Draw the text
                

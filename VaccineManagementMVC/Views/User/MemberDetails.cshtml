@@ -119,7 +119,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => Model.AadhaarNo)
                     </td>
-                    @if (Model != null)
+                    @if (Model.mslots.Count != 0)
                     {
                         <td>
                             @Html.DisplayFor(modelItem => Model.mslots.First().DateTime)
